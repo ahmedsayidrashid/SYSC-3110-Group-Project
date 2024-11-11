@@ -2,27 +2,25 @@ import java.util.List;
 
 public class Player {
     private pieceList pieces;
-    private Board view;
+    private GameView view;
     private String name;
     private int score;
 
-    public Player(pieceList pieces, Board view, String name) {
+    public Player(pieceList pieces, GameView view, String name) {
         this.pieces = pieces;
         this.view = view;
         this.name = name;
         this.score = 0;
     }
 
-    // Method to add a piece to players hand
     public void addPiece(String letter) {
         if (letter != null) {
-            letter.toUpperCase();
+            letter = letter.toUpperCase();
             Piece newPiece = new Piece(letter);
             pieces.addPiece(newPiece);
         }
     }
 
-    //Method to remove a piece from a players hand
     public void removePiece(List<Piece> pieceList) {
         if (pieceList.size() < 8) {
             pieces.removePiece(pieceList);
@@ -31,7 +29,6 @@ public class Player {
         }
     }
 
-    // Method to play then remove a piece from players hand
     public void playPieces(List<Piece> pieceList) {
         for (Piece piece : pieceList) {
             this.score += piece.getValue();
@@ -43,7 +40,6 @@ public class Player {
         }
     }
 
-    // Method to clear the players hand
     public void clearPieceList() {
         pieces.clear();
     }
@@ -51,7 +47,13 @@ public class Player {
     public String getName() {
         return name;
     }
+
     public int getScore() {
         return score;
+    }
+
+    // New method to add points to the player's score
+    public void addScore(int points) {
+        this.score += points;
     }
 }

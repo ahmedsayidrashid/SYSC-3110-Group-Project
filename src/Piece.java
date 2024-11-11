@@ -1,46 +1,55 @@
 import java.util.HashMap;
 import java.util.Map;
+
 public class Piece {
     private String letter;
     private int value;
     private static final Map<String, Integer> letterValues = new HashMap<>();
 
-    static{
-        letterValues.put(String.valueOf('A'), 1);
-        letterValues.put(String.valueOf('B'), 3);
-        letterValues.put(String.valueOf('C'), 3);
-        letterValues.put(String.valueOf('D'), 2);
-        letterValues.put(String.valueOf('E'), 1);
-        letterValues.put(String.valueOf('F'), 4);
-        letterValues.put(String.valueOf('G'), 2);
-        letterValues.put(String.valueOf('H'), 4);
-        letterValues.put(String.valueOf('I'), 1);
-        letterValues.put(String.valueOf('J'), 8);
-        letterValues.put(String.valueOf('K'), 5);
-        letterValues.put(String.valueOf('L'), 1);
-        letterValues.put(String.valueOf('M'), 3);
-        letterValues.put(String.valueOf('N'), 1);
-        letterValues.put(String.valueOf('O'), 1);
-        letterValues.put(String.valueOf('P'), 3);
-        letterValues.put(String.valueOf('Q'), 10);
-        letterValues.put(String.valueOf('R'), 1);
-        letterValues.put(String.valueOf('S'), 1);
-        letterValues.put(String.valueOf('T'), 1);
-        letterValues.put(String.valueOf('U'), 1);
-        letterValues.put(String.valueOf('V'), 4);
-        letterValues.put(String.valueOf('W'), 4);
-        letterValues.put(String.valueOf('X'), 8);
-        letterValues.put(String.valueOf('Y'), 4);
-        letterValues.put(String.valueOf('Z'), 10);
+    static {
+        letterValues.put("A", 1);
+        letterValues.put("B", 3);
+        letterValues.put("C", 3);
+        letterValues.put("D", 2);
+        letterValues.put("E", 1);
+        letterValues.put("F", 4);
+        letterValues.put("G", 2);
+        letterValues.put("H", 4);
+        letterValues.put("I", 1);
+        letterValues.put("J", 8);
+        letterValues.put("K", 5);
+        letterValues.put("L", 1);
+        letterValues.put("M", 3);
+        letterValues.put("N", 1);
+        letterValues.put("O", 1);
+        letterValues.put("P", 3);
+        letterValues.put("Q", 10);
+        letterValues.put("R", 1);
+        letterValues.put("S", 1);
+        letterValues.put("T", 1);
+        letterValues.put("U", 1);
+        letterValues.put("V", 4);
+        letterValues.put("W", 4);
+        letterValues.put("X", 8);
+        letterValues.put("Y", 4);
+        letterValues.put("Z", 10);
     }
+
     public Piece(String letter) {
-        this.letter = letter;
-        this.value = letterValues.get(letter);
+        this.letter = letter.toUpperCase();
+
+        // Check if the letter exists in the map, and handle cases where it does not
+        Integer letterValue = letterValues.get(this.letter);
+        if (letterValue == null) {
+            throw new IllegalArgumentException("Invalid letter: " + letter);
+        }
+        this.value = letterValue;
     }
 
     public String getLetter() {
         return letter;
     }
+
     public int getValue() {
         return value;
     }
