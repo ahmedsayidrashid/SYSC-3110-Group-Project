@@ -12,11 +12,17 @@ public class pieceList extends DefaultListModel<Piece> {
     }
 
     public Piece removePiece(List<Piece> pieceList) {
-        for(int i = 0; i < getSize(); i++)
-            if(contains(pieceList.get(i))){
+        if (pieceList == null || pieceList.isEmpty()) {
+            return null; // Return early if the list is empty or null
+        }
+
+        for (int i = 0; i < getSize(); i++) {
+            if (contains(pieceList.get(i))) {
                 int index = pieceList.indexOf(pieceList.get(i));
                 return remove(index);
             }
+        }
         return null;
     }
+
 }
