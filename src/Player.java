@@ -21,14 +21,6 @@ public class Player {
         }
     }
 
-    public void removePiece(List<Piece> pieceList) {
-        if (pieceList.size() < 8) {
-            pieces.removePiece(pieceList);
-        } else {
-            view.showMessage("Too many pieces selected to remove");
-        }
-    }
-
     public void playPieces(List<Piece> pieceList) {
         for (Piece piece : pieceList) {
             this.score += piece.getValue();
@@ -56,4 +48,21 @@ public class Player {
     public void addScore(int points) {
         this.score += points;
     }
+
+    public void removePiece(List<Piece> pieceList) {
+        int scoreToRemove = 0;
+
+        for (Piece piece : pieceList) {
+            scoreToRemove += piece.getValue();
+        }
+
+        // Only remove pieces if successful, then adjust the score
+        boolean removed = pieces.removePiece(pieceList);
+        if (removed) {
+            this.score -= scoreToRemove;
+        } else {
+            System.out.println("No pieces removed. Score not updated.");
+        }
+    }
+
 }

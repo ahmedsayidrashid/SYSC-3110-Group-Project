@@ -26,7 +26,7 @@ public class GameController implements ActionListener {
             // Parse the placement notation (e.g., "H8 horizontal WORD")
             String[] parts = wordPlacement.split(" ");
             if (parts.length != 3) {
-                view.showMessage("Invalid notation. Use format: ROW_COL orientation WORD");
+                view.showMessage("Invalid notation. Use format: ROW_COL ex: H8, orientation either horizontal or vertical and then your WORD");
                 return;
             }
 
@@ -47,7 +47,11 @@ public class GameController implements ActionListener {
             }
 
         } else if (e.getSource() == view.removeButton) {
-            // Clear selected cells on the board
+            List<Piece> selectedPieces = view.getSelectedPieces();
+            player.removePiece(selectedPieces);
+
+            // Update the view with the new score
+            view.updatePlayerInfo(player.getName() + " - Score: " + player.getScore());
             view.clearSelectedCells();
         } else if (e.getSource() == view.passButton) {
             view.showMessage("Turn passed.");

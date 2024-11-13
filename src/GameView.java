@@ -37,7 +37,7 @@ public class GameView extends JFrame {
         JPanel buttonPanel = new JPanel();
         playButton = new JButton("Play Word");
         removeButton = new JButton("Remove Selected");
-        passButton = new JButton("Pass Turn");
+        //passButton = new JButton("Pass Turn");
         wordPlacementField = new JTextField(20); // Input for placement notation
         buttonPanel.add(new JLabel("Place Word:"));
         buttonPanel.add(wordPlacementField);
@@ -122,4 +122,6 @@ public class GameView extends JFrame {
             boardGrid[row][col].setText(letter);
         }
     }
+
+
 }
