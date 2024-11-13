@@ -25,25 +25,25 @@ public class GameController implements ActionListener {
 
             // Parse the placement notation (e.g., "H8 horizontal WORD")
             String[] parts = wordPlacement.split(" ");
-            if (parts.length != 3) {
+            if (parts.length != 3) { // incorrect word format
                 view.showMessage("Invalid notation. Use format: ROW_COL ex: H8, orientation either horizontal or vertical and then your WORD");
                 return;
             }
 
-            String position = parts[0];
-            String orientation = parts[1];
-            String word = parts[2];
+            String position = parts[0]; // first portion of the text is position
+            String orientation = parts[1]; // second portion of user input is word orientation
+            String word = parts[2]; // last portion is the word itself
 
             // Convert position (e.g., "H8") to row and column
-            int row = position.charAt(0) - 'A';
-            int col = Integer.parseInt(position.substring(1)) - 1;
+            int row = position.charAt(0) - 'A'; // find equivalent row number given the character
+            int col = Integer.parseInt(position.substring(1)) - 1; // get the column
 
             int wordScore = placeWord(row, col, orientation, word);
-            if (wordScore > 0) {
+            if (wordScore > 0) { // if the user input was valid
                 player.addScore(wordScore);
                 view.updatePlayerInfo(player.getName() + " - Score: " + player.getScore());
             } else {
-                view.showMessage("Invalid word placement.");
+                view.showMessage("Invalid word placement."); // invalid input
             }
 
         } else if (e.getSource() == view.removeButton) {
